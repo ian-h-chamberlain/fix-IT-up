@@ -7,6 +7,7 @@ permissions:
 env:
   GODOT_VERSION: 4.2.2
   EXPORT_NAME: fix IT up
+  EXPORT_NAME_SLUG: fix-IT-up
 
 jobs:
   export-windows:
@@ -30,7 +31,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: windows
+          name: ${{ env.EXPORT_NAME_SLUG }}.exe
           path: build/native/windows
 
   export-linux:
@@ -54,7 +55,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: linux
+          name: ${{ env.EXPORT_NAME_SLUG }}-linux.x86_64
           path: build/native/linux
 
   export-web:
@@ -78,7 +79,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: web
+          name: ${{ env.EXPORT_NAME_SLUG }}-web.zip
           path: build/web
 
   export-mac:
@@ -102,7 +103,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: mac
+          name: ${{ env.EXPORT_NAME_SLUG }}-macos.zip
           path: build/native/macos
 
   release:
@@ -114,19 +115,14 @@ jobs:
       - export-web
       - export-mac
     steps:
-      - name: Release native builds
-        uses: fnkr/github-action-ghr@v1
-        if: startsWith(github.ref, 'refs/tags/v')
-        env:
-          GHR_PATH: build/native
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download artifacts from CI
+        uses: actions/download-artifact@v4
 
-      - name: Release web build
+      - name: Create release and upload artifacts
         uses: fnkr/github-action-ghr@v1
         if: startsWith(github.ref, 'refs/tags/v')
         env:
-          GHR_PATH: build/web
-          GHR_COMPRESS: zip
+          GHR_PATH: .
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # TODO: https://github.com/marketplace/actions/butler-push
