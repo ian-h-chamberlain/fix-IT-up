@@ -13,3 +13,5 @@ export.cfg
 data_*/
 mono_crash.*.json
 
+# From CI builds
+build/
