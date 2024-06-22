@@ -1,5 +1,7 @@
 name: "godot-ci export"
-on: push
+on:
+  push:
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -101,7 +103,7 @@ jobs:
           mkdir -v -p build/native/macos
           godot --headless --verbose --export-release "macOS" "build/native/macos/$EXPORT_NAME.zip"
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.EXPORT_NAME_SLUG }}-macos.zip
           path: build/native/macos
@@ -117,6 +119,9 @@ jobs:
     steps:
       - name: Download artifacts from CI
         uses: actions/download-artifact@v4
+        with:
+          pattern: "*${{ env.EXPORT_NAME_SLUG}}*"
+          merge-multiple: true
 
       - name: Create release and upload artifacts
         uses: fnkr/github-action-ghr@v1
