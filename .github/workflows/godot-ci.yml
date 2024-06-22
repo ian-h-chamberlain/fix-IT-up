@@ -33,7 +33,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ${{ env.EXPORT_NAME_SLUG }}.exe
+          name: ${{ env.EXPORT_NAME_SLUG }}-windows.exe
           path: build/native/windows
 
   export-linux:
@@ -111,6 +111,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
     needs:
       - export-windows
       - export-linux
@@ -124,11 +125,9 @@ jobs:
           merge-multiple: true
 
       - name: Create release and upload artifacts
-        uses: fnkr/github-action-ghr@v1
-        if: startsWith(github.ref, 'refs/tags/v')
-        env:
-          GHR_PATH: .
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
+        with:
+          files: '*'
 
   # TODO: https://github.com/marketplace/actions/butler-push
   # Push builds (especially web) to itch.io.
