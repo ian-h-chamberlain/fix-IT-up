@@ -15,3 +15,8 @@ mono_crash.*.json
 
 # From CI builds
 build/
+
+
+# Krita backup files
+*-autosave.kra
+*.kra~
