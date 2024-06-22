@@ -1,0 +1,49 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dfh0h3n3c7ql4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_un867"]
+resource_name = "HoverInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inure"]
+resource_name = "HoverInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bw1nj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbg74"]
+resource_name = "PressedInteractable"
+bg_color = Color(0, 0, 0, 0.313726)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxFlat_un867")
+Button/styles/hover = SubResource("StyleBoxFlat_inure")
+Button/styles/normal = SubResource("StyleBoxEmpty_bw1nj")
+Button/styles/pressed = SubResource("StyleBoxFlat_fbg74")

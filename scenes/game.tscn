@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://b82dgaor54mvc"]
+[gd_scene load_steps=5 format=3 uid="uid://b82dgaor54mvc"]
 
 [ext_resource type="Texture2D" uid="uid://nwxrpob5vbkt" path="res://assets/background.png" id="1_gfbd1"]
+[ext_resource type="Theme" uid="uid://rq602112vek1" path="res://themes/clickable_round.tres" id="1_hwjg7"]
+[ext_resource type="Theme" uid="uid://dfh0h3n3c7ql4" path="res://themes/clickable_square.tres" id="3_1ls2i"]
 
-[node name="Root" type="Control"]
+[sub_resource type="Theme" id="Theme_5t52v"]
+
+[node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +15,74 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = -100
+layout_mode = 0
 offset_right = 1024.0
 offset_bottom = 768.0
+mouse_filter = 2
+theme = SubResource("Theme_5t52v")
 texture = ExtResource("1_gfbd1")
+
+[node name="Interactables" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CableMgmtButton" type="Button" parent="Interactables"]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 170.0
+offset_right = 608.0
+offset_bottom = 318.0
+text = "Cable
+Management"
+
+[node name="Monitor" type="Control" parent="Interactables"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BrightessDown" type="Button" parent="Interactables/Monitor"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 472.0
+offset_right = 291.0
+offset_bottom = 497.0
+theme = ExtResource("1_hwjg7")
+
+[node name="BrightessUp" type="Button" parent="Interactables/Monitor"]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 472.0
+offset_right = 332.0
+offset_bottom = 497.0
+theme = ExtResource("1_hwjg7")
+
+[node name="Power" type="Button" parent="Interactables/Monitor"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 472.0
+offset_right = 374.0
+offset_bottom = 497.0
+theme = ExtResource("1_hwjg7")
+
+[node name="Desktop" type="Control" parent="Interactables"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EjectCD" type="Button" parent="Interactables/Desktop"]
+layout_mode = 0
+offset_left = 813.0
+offset_top = 250.0
+offset_right = 829.0
+offset_bottom = 268.0
+theme = ExtResource("3_1ls2i")
+
+[node name="EjectFloppy" type="Button" parent="Interactables/Desktop"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 287.0
+offset_right = 811.0
+offset_bottom = 301.0
+theme = ExtResource("3_1ls2i")
