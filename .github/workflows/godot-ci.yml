@@ -19,7 +19,7 @@ jobs:
       image: barichello/godot-ci:4.2.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           lfs: true
       - name: Setup
@@ -31,7 +31,7 @@ jobs:
           mkdir -v -p build/native/windows
           godot --headless --verbose --export-release "Windows Desktop" "build/native/windows/$EXPORT_NAME.exe"
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.EXPORT_NAME_SLUG }}-windows.exe
           path: build/native/windows
@@ -43,7 +43,7 @@ jobs:
       image: barichello/godot-ci:4.2.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           lfs: true
       - name: Setup
@@ -55,7 +55,7 @@ jobs:
           mkdir -v -p build/native/linux
           godot --headless --verbose --export-release "Linux/X11" "build/native/linux/$EXPORT_NAME.x86_64"
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.EXPORT_NAME_SLUG }}-linux.x86_64
           path: build/native/linux
@@ -67,7 +67,7 @@ jobs:
       image: barichello/godot-ci:4.2.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           lfs: true
       - name: Setup
@@ -79,7 +79,7 @@ jobs:
           mkdir -v -p build/web
           godot --headless --verbose --export-release "Web" build/web/index.html
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.EXPORT_NAME_SLUG }}-web.zip
           path: build/web
@@ -91,7 +91,7 @@ jobs:
       image: barichello/godot-ci:4.2.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           lfs: true
       - name: Setup
@@ -102,10 +102,13 @@ jobs:
         run: |
           mkdir -v -p build/native/macos
           godot --headless --verbose --export-release "macOS" "build/native/macos/$EXPORT_NAME.zip"
+          unzip "build/native/macos/$EXPORT_NAME.zip"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME_SLUG }}-macos.zip
+          # Since Actions already zips things when you upload them, we explicitly unzip
+          # and upload with .app extension.
+          name: ${{ env.EXPORT_NAME_SLUG }}-macos.app
           path: build/native/macos
 
   release:
@@ -121,8 +124,7 @@ jobs:
       - name: Download artifacts from CI
         uses: actions/download-artifact@v4
         with:
-          pattern: "*${{ env.EXPORT_NAME_SLUG}}*"
-          merge-multiple: true
+          pattern: ${{ env.EXPORT_NAME_SLUG}}-*
 
       - name: Create release and upload artifacts
         uses: softprops/action-gh-release@v2
