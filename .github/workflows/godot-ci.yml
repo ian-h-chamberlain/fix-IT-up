@@ -120,28 +120,15 @@ jobs:
       - export-web
       - export-mac
     steps:
-      # ughhhhh: https://github.com/actions/download-artifact/issues/143
       - name: Download artifacts
-        uses: actions/github-script@v6
-        with:
-          script: |
-            let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
-               owner: context.repo.owner,
-               repo: context.repo.repo,
-               run_id: context.payload.workflow_run.id,
-            });
-            for (const artifact of allArtifacts.data.artifacts)
-            {
-              let download = await github.rest.actions.downloadArtifact({
-                 owner: context.repo.owner,
-                 repo: context.repo.repo,
-                 artifact_id: artifact.id,
-                 archive_format: 'zip',
-              });
-
-               let fs = require('fs');
-               fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/${artifact.name}.zip`, Buffer.from(download.data));
-            }
+        # ughhhhh: https://github.com/actions/download-artifact/issues/143
+        # Somehow this is actually easier. Ridiculous. FFFFFFFFFFFF
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >
+          gh api '/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts' |
+            jq -r '.artifacts[] | [.archive_download_url, "-o", .name + ".zip"] | @tsv' |
+            xargs curl -vvv -L --header "Authorization: token ${GITHUB_TOKEN}"
 
       - name: Create release and upload artifacts
         uses: softprops/action-gh-release@v2
