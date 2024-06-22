@@ -33,7 +33,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME_SLUG }}-windows.zip
+          name: ${{ env.EXPORT_NAME_SLUG }}-windows
           path: build/native/windows
 
   export-linux:
@@ -57,7 +57,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME_SLUG }}-linux.zip
+          name: ${{ env.EXPORT_NAME_SLUG }}-linux
           path: build/native/linux
 
   export-web:
@@ -81,7 +81,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME_SLUG }}-web.zip
+          name: ${{ env.EXPORT_NAME_SLUG }}-web
           path: build/web
 
   export-mac:
@@ -107,7 +107,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME_SLUG }}-macos.zip
+          name: ${{ env.EXPORT_NAME_SLUG }}-macos
           path: build/native/macos
 
   release:
@@ -120,10 +120,28 @@ jobs:
       - export-web
       - export-mac
     steps:
-      - name: Download artifacts from CI
-        uses: actions/download-artifact@v4
+      # ughhhhh: https://github.com/actions/download-artifact/issues/143
+      - name: Download artifacts
+        uses: actions/github-script@v6
         with:
-          pattern: ${{ env.EXPORT_NAME_SLUG}}-*
+          script: |
+            let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: context.payload.workflow_run.id,
+            });
+            for (const artifact of allArtifacts.data.artifacts)
+            {
+              let download = await github.rest.actions.downloadArtifact({
+                 owner: context.repo.owner,
+                 repo: context.repo.repo,
+                 artifact_id: artifact.id,
+                 archive_format: 'zip',
+              });
+
+               let fs = require('fs');
+               fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/${artifact.name}.zip`, Buffer.from(download.data));
+            }
 
       - name: Create release and upload artifacts
         uses: softprops/action-gh-release@v2
