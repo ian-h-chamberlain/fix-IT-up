@@ -33,7 +33,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME_SLUG }}-windows.exe
+          name: ${{ env.EXPORT_NAME_SLUG }}-windows.zip
           path: build/native/windows
 
   export-linux:
@@ -57,7 +57,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME_SLUG }}-linux.x86_64
+          name: ${{ env.EXPORT_NAME_SLUG }}-linux.zip
           path: build/native/linux
 
   export-web:
@@ -102,13 +102,12 @@ jobs:
         run: |
           mkdir -v -p build/native/macos
           godot --headless --verbose --export-release "macOS" "build/native/macos/$EXPORT_NAME.zip"
+          # Since Actions already zips things when you upload them, we explicitly unzip before uploading
           unzip "build/native/macos/$EXPORT_NAME.zip"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          # Since Actions already zips things when you upload them, we explicitly unzip
-          # and upload with .app extension.
-          name: ${{ env.EXPORT_NAME_SLUG }}-macos.app
+          name: ${{ env.EXPORT_NAME_SLUG }}-macos.zip
           path: build/native/macos
 
   release:
@@ -130,6 +129,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: '*'
+          prerelease: ${{ startsWith(github.ref, 'refs/tags/v0') }}
 
   # TODO: https://github.com/marketplace/actions/butler-push
   # Push builds (especially web) to itch.io.
