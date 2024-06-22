@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bvokt82tb5fds"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bvokt82tb5fds"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o1mn"]
 resource_name = "HoveredBox"
@@ -48,8 +48,33 @@ shadow_color = Color(0, 0, 0, 0.823529)
 shadow_size = 5
 shadow_offset = Vector2(5, 5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m001t"]
+resource_name = "DialoguePanel"
+bg_color = Color(0.966939, 0.966939, 0.966939, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.572988, 0.572988, 0.572988, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+shadow_color = Color(0, 0, 0, 0.823529)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
 [resource]
 resource_name = "UITheme"
 Button/styles/hover = SubResource("StyleBoxFlat_0o1mn")
 Button/styles/normal = SubResource("StyleBoxFlat_cvmrf")
 Button/styles/pressed = SubResource("StyleBoxFlat_3ko8p")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+Panel/styles/panel = SubResource("StyleBoxFlat_m001t")
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/bold_italics_font_size = 24
+RichTextLabel/font_sizes/italics_font_size = 24
+RichTextLabel/font_sizes/mono_font_size = 20
+RichTextLabel/font_sizes/normal_font_size = 20
