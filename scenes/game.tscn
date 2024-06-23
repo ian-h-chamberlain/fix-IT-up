@@ -83,6 +83,9 @@ color = Color(1, 1, 1, 0)
 
 [node name="Desktop" type="Node" parent="Interactables"]
 script = ExtResource("5_hbgmh")
+power_state = null
+floppy_inserted = null
+cd_inserted = null
 
 [node name="PowerButton" type="Button" parent="Interactables/Desktop"]
 offset_left = 748.0
@@ -92,6 +95,7 @@ offset_bottom = 425.0
 theme = ExtResource("1_hwjg7")
 
 [node name="PowerLED" type="ColorRect" parent="Interactables/Desktop"]
+visible = false
 offset_left = 760.0
 offset_top = 438.0
 offset_right = 774.0
@@ -101,6 +105,7 @@ color = Color(0.415686, 0.898039, 0, 1)
 [node name="HardDisk" type="Node" parent="Interactables/Desktop"]
 
 [node name="LED" type="ColorRect" parent="Interactables/Desktop/HardDisk"]
+visible = false
 offset_left = 819.0
 offset_top = 273.0
 offset_right = 833.0
@@ -119,6 +124,7 @@ offset_bottom = 313.0
 theme = ExtResource("3_1ls2i")
 
 [node name="LED" type="ColorRect" parent="Interactables/Desktop/CD"]
+visible = false
 offset_left = 840.0
 offset_top = 316.0
 offset_right = 848.0
@@ -137,6 +143,7 @@ offset_bottom = 349.0
 theme = ExtResource("3_1ls2i")
 
 [node name="LED" type="ColorRect" parent="Interactables/Desktop/Floppy"]
+visible = false
 offset_left = 821.0
 offset_top = 354.0
 offset_right = 830.0
