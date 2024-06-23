@@ -213,3 +213,4 @@ clip_text = true
 icon_alignment = 2
 
 [connection signal="describe_problem" from="." to="DialoguePanel" method="_on_describe_problem"]
+[connection signal="power_state_updated" from="Interactables/Desktop" to="Interactables/Monitor" method="_on_pc_power_changed"]

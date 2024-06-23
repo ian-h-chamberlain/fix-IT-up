@@ -9,11 +9,17 @@ class_name Monitor
     set(state):
         power_state = state
         _set_brightness(brightness)
+    get:
+        if _pc_power == Desktop.Power.ON:
+            return power_state
+        return Power.OFF
 
 @onready var _brightness_rect: ColorRect = $"Brightness"
 @onready var _brightness_up: Button = $"BrightnessUp"
 @onready var _brightness_down: Button = $"BrightnessDown"
 @onready var _power: Button = $"Power"
+
+var _pc_power: Desktop.Power
 
 enum Power {ON, OFF}
 
@@ -28,7 +34,7 @@ func _ready():
 func _set_brightness(b: float):
     brightness = b
 
-    if power_state == Power.OFF:
+    if _pc_power == Desktop.Power.OFF or power_state == Power.OFF:
         _brightness_rect.color.a = 1.0
         _brightness_rect.color.v = 0.2
         return
@@ -54,4 +60,8 @@ func _on_power_pressed():
         Power.OFF: power_state = Power.ON
 
     # Retrigger the normal brightness flow
+    _set_brightness(brightness)
+
+func _on_pc_power_changed(state: Desktop.Power):
+    _pc_power = state
     _set_brightness(brightness)

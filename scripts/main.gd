@@ -30,6 +30,7 @@ class Problem:
 
     var dialogue_text: String:
         get:
+            # TODO: maybe return a list for scrollability here?
             return "\n".join([
                 [
                     "I've been having some issues with my computer.",
@@ -60,6 +61,7 @@ class Problem:
                 choices = [
                     "I keep seeing something like [code]disk read error[/code]?",
                     "The black square thingy is kinda jammed in there.",
+                    "It says [code]please insert disk 2[/code] and I don't know what that means."
                 ]
             ProblemType.BRIGHTNESS_LOW, ProblemType.MONITOR_OFF, ProblemType.PC_OFF:
                 choices = [
@@ -115,6 +117,28 @@ func _set_problem_state():
             _monitor.power_state = Monitor.Power.ON
         ProblemType.MONITOR_OFF:
             _monitor.power_state = Monitor.Power.OFF
+
+## TODO: should there be a "submit" button to see if it's fixed, or do it automatically?
+func _is_problem_solved() -> bool:
+    # Hmmm... maybe there should be a cascade of problems, like:
+    # - Scenario: problem 1
+    #   - problem 1 fixed -> figure out what is still a problem
+    #   - problem 2 fixed -> done!
+
+    if _desktop.power_state == Desktop.Power.OFF:
+        return false
+
+    match current_problem.type:
+        ProblemType.CD_STUCK:
+            return _desktop.cd_inserted
+        ProblemType.FLOPPY_STUCK:
+            return _desktop.floppy_inserted
+        ProblemType.PC_OFF, ProblemType.BRIGHTNESS_LOW, ProblemType.MONITOR_OFF:
+            return _monitor.power_state == Monitor.Power.OFF and _monitor.brightness > - 0.3
+        ProblemType.BRIGHTNESS_HIGH:
+            return _monitor.brightness < 0.3
+
+    return false
 
 func _process(_delta):
     if Input.is_action_just_pressed("add_problem"):
