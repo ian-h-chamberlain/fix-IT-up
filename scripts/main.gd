@@ -4,87 +4,44 @@ class_name Main
 signal describe_problem(problem: Array[Problem])
 
 var current_problems: Array[Problem] = []
+var problem_timer: Timer = Timer.new()
 
-enum Comp {
-	DESKTOP,
-	MONITOR,
-	KEYBOARD,
-	MOUSE,
-	SOFTWARE,
-}
-
-enum Monitor {
+enum ProblemType {
+	CD_STUCK,
+	FLOPPY_STUCK,
 	BRIGHTNESS_LOW,
 	BRIGHTNESS_HIGH,
-	POWER_OFF,
-	NO_SIGNAL,
-	NO_POWER,
-}
-
-enum Desktop {
-	NO_POWER,
-	CD_PROBLEM,
-	FLOPPY_PROBLEM,
-	HARD_DISK_PROBLEM,
-	FAN_PROBLEM,
-}
-
-enum Keyboard {
-	UNPLUGGED,
-	STUCK_KEY,
-}
-
-enum Mouse {
-	UNPLUGGED,
-	STUCK_BALL,
-	STUCK_BUTTON,
-}
-
-enum Software {
-	DISK_FULL,
-	MALWARE_INFECTED,
+	MONITOR_OFF,
+	PC_OFF,
 }
 
 class Problem:
-	var component: Comp
-	var problem_type
-
-	func _init():
-		self.component = _rand(Comp)
-		match self.component:
-			Comp.DESKTOP:
-				self.problem_type = _rand(Desktop)
-			Comp.MONITOR:
-				self.problem_type = _rand(Monitor)
-			Comp.KEYBOARD:
-				self.problem_type = _rand(Keyboard)
-			Comp.MOUSE:
-				self.problem_type = _rand(Mouse)
-			Comp.SOFTWARE:
-				self.problem_type = _rand(Software)
-
-	static func _rand(enu):
-		return enu[enu.keys().pick_random()]
+	var problem_type: ProblemType
 
 	var dialogue_text: String:
 		get:
-			return "I've been having some problems with the {comp}. ({desc})".format({
-				"comp": self._component_str(),
-				"desc": self,
-			})
+			return "I've been having some problems with my computer. %s" % self._problem_str()
+
+	func _init():
+		self.problem_type = _rande(ProblemType)
 
 	func _to_string() -> String:
-		return Comp.find_key(self.component)
+		return ProblemType.find_key(self.component)
 
-	func _component_str() -> String:
-		match self.component:
-			Comp.DESKTOP: return "tower"
-			Comp.MONITOR: return "screen"
-			Comp.KEYBOARD: return "keyboard"
-			Comp.MOUSE: return "mouse"
-			Comp.SOFTWARE: return "applications"
+	func _rande(enum_dict):
+		return enum_dict[enum_dict.keys().pick_random()]
+
+	func _problem_str() -> String:
+		match self.problem_type:
+			ProblemType.CD_STUCK:
+				return [
+					"I keep seeing an error"
+				].pick_random()
 
 		return ""
+
+func _ready():
+	pass
 
 func _process(_delta):
 	if Input.is_action_just_pressed("add_problem"):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b82dgaor54mvc"]
+[gd_scene load_steps=13 format=3 uid="uid://b82dgaor54mvc"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_epm5v"]
 [ext_resource type="Texture2D" uid="uid://nwxrpob5vbkt" path="res://assets/background.png" id="1_gfbd1"]
 [ext_resource type="Theme" uid="uid://rq602112vek1" path="res://themes/clickable_round.tres" id="1_hwjg7"]
 [ext_resource type="Theme" uid="uid://dfh0h3n3c7ql4" path="res://themes/clickable_square.tres" id="3_1ls2i"]
+[ext_resource type="Script" path="res://scripts/Monitor.gd" id="3_e8gux"]
 [ext_resource type="Texture2D" uid="uid://crgy2qqikarky" path="res://assets/arrow_button.png" id="4_5hwqp"]
 [ext_resource type="Script" path="res://scripts/DialoguePanel.gd" id="5_op0vf"]
 
@@ -22,11 +23,7 @@ shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Main" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_epm5v")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -45,19 +42,23 @@ offset_left = 456.0
 offset_top = 220.0
 offset_right = 639.0
 offset_bottom = 368.0
-text = "Cable
-Management"
+disabled = true
+text = "Cable Management
+(not yet available)"
 
 [node name="Monitor" type="Node" parent="Interactables"]
+script = ExtResource("3_e8gux")
+brightness_increment = 0.2
+state = 1
 
-[node name="BrightessDown" type="Button" parent="Interactables/Monitor"]
+[node name="BrightnessDown" type="Button" parent="Interactables/Monitor"]
 offset_left = 288.0
 offset_top = 522.0
 offset_right = 313.0
 offset_bottom = 547.0
 theme = ExtResource("1_hwjg7")
 
-[node name="BrightessUp" type="Button" parent="Interactables/Monitor"]
+[node name="BrightnessUp" type="Button" parent="Interactables/Monitor"]
 offset_left = 328.0
 offset_top = 522.0
 offset_right = 353.0
@@ -70,6 +71,13 @@ offset_top = 521.0
 offset_right = 396.0
 offset_bottom = 547.0
 theme = ExtResource("1_hwjg7")
+
+[node name="Brightness" type="ColorRect" parent="Interactables/Monitor"]
+offset_left = 158.0
+offset_top = 316.0
+offset_right = 404.0
+offset_bottom = 510.0
+color = Color(1, 1, 1, 0)
 
 [node name="Desktop" type="Node" parent="Interactables"]
 
@@ -87,17 +95,20 @@ offset_right = 831.0
 offset_bottom = 349.0
 theme = ExtResource("3_1ls2i")
 
+[node name="Power" type="Button" parent="Interactables/Desktop"]
+offset_left = 748.0
+offset_top = 404.0
+offset_right = 787.0
+offset_bottom = 425.0
+theme = ExtResource("1_hwjg7")
+
 [node name="DialoguePanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0124414
-anchor_top = 0.00819271
-anchor_right = 0.0124414
-anchor_bottom = 0.00819271
-offset_left = 0.519999
-offset_top = 0.415995
-offset_right = 362.52
-offset_bottom = 144.416
+visible = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 392.0
+offset_bottom = 150.0
 script = ExtResource("5_op0vf")
 metadata/_edit_use_anchors_ = true
 
@@ -144,5 +155,14 @@ icon = ExtResource("4_5hwqp")
 alignment = 2
 clip_text = true
 icon_alignment = 2
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+initial_position = 2
+
+[node name="Button" type="Button" parent="PopupPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
 
 [connection signal="describe_problem" from="." to="DialoguePanel" method="_on_describe_problem"]
