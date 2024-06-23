@@ -83,6 +83,10 @@ class Problem:
         return choices.pick_random()
 
 func _ready():
+    # TODO accessibility https://docs.godotengine.org/en/stable/tutorials/ui/gui_navigation.html
+    # maybe even can make it controller playable with this, since it's all just
+    # buttons at the moment
+
     # TODO: turn this into a game loop. Probably with some kind of "thank you!"
     # and perhaps a transition of sorts to the next customer
     current_problem = Problem.new()
@@ -115,6 +119,7 @@ func _set_problem_state():
         ProblemType.BRIGHTNESS_HIGH:
             _monitor.brightness = 1.0
             _monitor.power_state = Monitor.Power.ON
+            _desktop.power_state = Desktop.Power.ON
         ProblemType.MONITOR_OFF:
             _monitor.power_state = Monitor.Power.OFF
 
@@ -141,9 +146,9 @@ func _is_problem_solved() -> bool:
     return false
 
 func _process(_delta):
-    if Input.is_action_just_pressed("add_problem"):
+    if Input.is_action_just_pressed("add_problem") and OS.is_debug_build():
         _randomize_state()
         current_problem = Problem.new()
 
-    if Input.is_action_just_pressed("clear_problems"):
+    if Input.is_action_just_pressed("clear_problems") and OS.is_debug_build():
         current_problem = null
