@@ -1,11 +1,15 @@
 extends Node
 
-@onready var _speech_bubble: RichTextLabel = $"MarginContainer/SpeechDialog"
+signal describe_problem(problem: Main.Problem)
 
-func _on_describe_problem(problems: Array[Main.Problem]):
-	if problems.is_empty():
-		self.visible = false
-		return
+@onready var _dialog := $MarginContainer/SpeechDialog as RichTextLabel
 
-	self.visible = true
-	_speech_bubble.text = problems[0].dialogue_text
+func _ready():
+    connect("describe_problem", _on_describe_problem)
+
+func _on_describe_problem(problem: Main.Problem):
+    if problem != null:
+        _dialog.text = problem.dialogue_text
+        self.visible = true
+    else:
+        self.visible = false

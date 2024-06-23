@@ -51,7 +51,6 @@ text = "Cable Management
 [node name="Monitor" type="Node" parent="Interactables"]
 script = ExtResource("3_e8gux")
 brightness_increment = 0.2
-state = 1
 
 [node name="BrightnessDown" type="Button" parent="Interactables/Monitor"]
 offset_left = 288.0
@@ -179,6 +178,7 @@ scroll_active = false
 scroll_following = true
 
 [node name="ContinueButton" type="Button" parent="DialoguePanel/MarginContainer/SpeechDialog"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
