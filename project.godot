@@ -24,6 +24,10 @@ window/size/window_width_override=2048
 window/size/window_height_override=1536
 window/stretch/scale=2.0
 window/stretch/scale_mode="integer"
+window/ios/suppress_ui_gesture=false
+window/size/window_height_override.web=1024
+window/size/window_width_override.web=768
+window/stretch/scale.web=1.0
 
 [gui]
 
