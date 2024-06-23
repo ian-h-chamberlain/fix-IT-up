@@ -24,7 +24,11 @@ shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Main" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_epm5v")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -152,8 +156,10 @@ color = Color(0.415686, 0.898039, 0, 1)
 [node name="Timer" type="Timer" parent="Interactables/Desktop/Floppy/LED"]
 
 [node name="DialoguePanel" type="Panel" parent="."]
-visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.125
+anchor_bottom = 0.0611979
 offset_left = 30.0
 offset_top = 30.0
 offset_right = 392.0
@@ -174,8 +180,8 @@ layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "So, my computer has been making a [i]weird[/i] noise lately."
+fit_content = true
 scroll_active = false
-scroll_following = true
 
 [node name="ContinueButton" type="Button" parent="DialoguePanel/MarginContainer/SpeechDialog"]
 visible = false

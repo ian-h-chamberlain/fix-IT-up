@@ -31,19 +31,21 @@ class Problem:
     var dialogue_text: String:
         get:
             return "\n".join([
-                "I've been having some issues with my computer.",
+                [
+                    "I've been having some issues with my computer.",
+                    "Something seems wrong here.",
+                    "Help!",
+                ].pick_random(),
                 self._problem_str(),
-                "Can you help?"
+                [
+                    "Can you help?",
+                    "Any idea how to make it work again?",
+                    "Is it fixable?",
+                ].pick_random()
             ])
 
     func _init():
-        self.type = _rande(ProblemType)
-
-    func _to_string() -> String:
-        return ProblemType.find_key(self.component)
-
-    func _rande(enum_dict):
-        return enum_dict[enum_dict.keys().pick_random()]
+        self.type = ProblemType[ProblemType.keys().pick_random()]
 
     func _problem_str() -> String:
         var choices: Array[String] = []
@@ -51,41 +53,36 @@ class Problem:
         match self.type:
             ProblemType.CD_STUCK:
                 choices = [
-                    "I keeping seeing an error like 'disc read error'?",
-                    "Some chewing gum might have gotten into the tray...",
+                    "I keep seeing something like [code]disc read error[/code]?",
+                    "Some chewing gum [i]might[/i] have gotten into the tray...",
                 ]
             ProblemType.FLOPPY_STUCK:
                 choices = [
-                    "I keeping seeing an error like 'disk read error'?",
+                    "I keep seeing something like [code]disk read error[/code]?",
                     "The black square thingy is kinda jammed in there.",
                 ]
             ProblemType.BRIGHTNESS_LOW, ProblemType.MONITOR_OFF, ProblemType.PC_OFF:
                 choices = [
-                    "I can't see anything on the screen!",
-                    "I've tried turning it off and on again but the screen is just black."
+                    "I can't see [b]anything[/b] on the screen!",
+                    "I tried turning it off and on again but the screen is just [b]black[/b]."
                 ]
                 if self.type == ProblemType.PC_OFF:
                     choices.append_array([
-                        "None of the little lights are blinking anymore and nothing works!",
-                        "I think the mainframe must have burnt out, you know?",
+                        "None of the little lights are blinking anymore and [i]nothing[/i] works!",
+                        "I think the mainframe must have burnt out, [i]ya know[/i]?",
                     ])
 
             ProblemType.BRIGHTNESS_HIGH:
                 choices = [
-                    "Maybe my monitor is busted? It is really hard to read anything on it.",
+                    "Maybe my monitor is busted? It's really hard to read anything on it.",
                     "All of a sudden it is as if I turned to a TV channel that doesn't exist!",
                 ]
 
         return choices.pick_random()
 
-    func _set_state():
-        pass
-
-    func _check_state():
-        pass
-
 func _ready():
-    # TODO: turn this into a game loop
+    # TODO: turn this into a game loop. Probably with some kind of "thank you!"
+    # and perhaps a transition of sorts to the next customer
     current_problem = Problem.new()
     _randomize_state()
     _set_problem_state()

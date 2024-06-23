@@ -3,7 +3,12 @@ class_name Desktop
 
 enum Power {ON, OFF}
 
-@export var power_state: Power = Power.ON
+signal power_state_updated(Power)
+
+@export var power_state: Power = Power.ON:
+    set(state):
+        power_state = state
+        _handle_power_change()
 
 @export var floppy_inserted: bool = true:
     set(inserted):
@@ -53,15 +58,19 @@ func _blink_and_reset_timer(led: ColorRect, wait_time: float=- 1.0):
 
 func _on_power_pressed():
     match power_state:
-        Power.OFF:
-            power_state = Power.ON
+        Power.ON: power_state = Power.OFF
+        Power.OFF: power_state = Power.ON
+
+func _handle_power_change():
+    power_state_updated.emit(power_state)
+    match power_state:
+        Power.ON:
             $PowerLED.visible = true
             _toggle_blinking($HardDisk/LED, true, randf_range(0.5, 1.5))
             _toggle_blinking($CD/LED, cd_inserted, randf_range(1.5, 3.0))
             _toggle_blinking($Floppy/LED, floppy_inserted, randf_range(1.5, 2.5))
 
-        Power.ON:
-            power_state = Power.OFF
+        Power.OFF:
             $PowerLED.visible = false
             _toggle_blinking($HardDisk/LED, false)
             _toggle_blinking($CD/LED, false)

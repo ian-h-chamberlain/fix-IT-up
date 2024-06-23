@@ -5,7 +5,10 @@ class_name Monitor
     set = _set_brightness
 
 @export var brightness_increment: float
-@export var power_state: Power
+@export var power_state: Power:
+    set(state):
+        power_state = state
+        _set_brightness(brightness)
 
 @onready var _brightness_rect: ColorRect = $"Brightness"
 @onready var _brightness_up: Button = $"BrightnessUp"
