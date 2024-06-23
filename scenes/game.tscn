@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b82dgaor54mvc"]
+[gd_scene load_steps=14 format=3 uid="uid://b82dgaor54mvc"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_epm5v"]
 [ext_resource type="Texture2D" uid="uid://nwxrpob5vbkt" path="res://assets/background.png" id="1_gfbd1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://dfh0h3n3c7ql4" path="res://themes/clickable_square.tres" id="3_1ls2i"]
 [ext_resource type="Script" path="res://scripts/Monitor.gd" id="3_e8gux"]
 [ext_resource type="Texture2D" uid="uid://crgy2qqikarky" path="res://assets/arrow_button.png" id="4_5hwqp"]
+[ext_resource type="Script" path="res://scripts/Desktop.gd" id="5_hbgmh"]
 [ext_resource type="Script" path="res://scripts/DialoguePanel.gd" id="5_op0vf"]
 
 [sub_resource type="Theme" id="Theme_5t52v"]
@@ -28,6 +29,7 @@ script = ExtResource("1_epm5v")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -100
+texture_filter = 1
 layout_mode = 0
 offset_right = 1024.0
 offset_bottom = 768.0
@@ -80,27 +82,68 @@ offset_bottom = 510.0
 color = Color(1, 1, 1, 0)
 
 [node name="Desktop" type="Node" parent="Interactables"]
+script = ExtResource("5_hbgmh")
 
-[node name="EjectCD" type="Button" parent="Interactables/Desktop"]
+[node name="PowerButton" type="Button" parent="Interactables/Desktop"]
+offset_left = 748.0
+offset_top = 404.0
+offset_right = 787.0
+offset_bottom = 425.0
+theme = ExtResource("1_hwjg7")
+
+[node name="PowerLED" type="ColorRect" parent="Interactables/Desktop"]
+offset_left = 760.0
+offset_top = 438.0
+offset_right = 774.0
+offset_bottom = 441.0
+color = Color(0.415686, 0.898039, 0, 1)
+
+[node name="HardDisk" type="Node" parent="Interactables/Desktop"]
+
+[node name="LED" type="ColorRect" parent="Interactables/Desktop/HardDisk"]
+offset_left = 819.0
+offset_top = 273.0
+offset_right = 833.0
+offset_bottom = 276.0
+color = Color(0.415686, 0.898039, 0, 1)
+
+[node name="Timer" type="Timer" parent="Interactables/Desktop/HardDisk/LED"]
+
+[node name="CD" type="Node" parent="Interactables/Desktop"]
+
+[node name="EjectButton" type="Button" parent="Interactables/Desktop/CD"]
 offset_left = 836.0
 offset_top = 298.0
 offset_right = 852.0
 offset_bottom = 313.0
 theme = ExtResource("3_1ls2i")
 
-[node name="EjectFloppy" type="Button" parent="Interactables/Desktop"]
+[node name="LED" type="ColorRect" parent="Interactables/Desktop/CD"]
+offset_left = 840.0
+offset_top = 316.0
+offset_right = 848.0
+offset_bottom = 319.0
+color = Color(0.415686, 0.898039, 0, 1)
+
+[node name="Timer" type="Timer" parent="Interactables/Desktop/CD/LED"]
+
+[node name="Floppy" type="Node" parent="Interactables/Desktop"]
+
+[node name="EjectButton" type="Button" parent="Interactables/Desktop/Floppy"]
 offset_left = 820.0
 offset_top = 337.0
 offset_right = 831.0
 offset_bottom = 349.0
 theme = ExtResource("3_1ls2i")
 
-[node name="Power" type="Button" parent="Interactables/Desktop"]
-offset_left = 748.0
-offset_top = 404.0
-offset_right = 787.0
-offset_bottom = 425.0
-theme = ExtResource("1_hwjg7")
+[node name="LED" type="ColorRect" parent="Interactables/Desktop/Floppy"]
+offset_left = 821.0
+offset_top = 354.0
+offset_right = 830.0
+offset_bottom = 357.0
+color = Color(0.415686, 0.898039, 0, 1)
+
+[node name="Timer" type="Timer" parent="Interactables/Desktop/Floppy/LED"]
 
 [node name="DialoguePanel" type="Panel" parent="."]
 visible = false
@@ -155,14 +198,5 @@ icon = ExtResource("4_5hwqp")
 alignment = 2
 clip_text = true
 icon_alignment = 2
-
-[node name="PopupPanel" type="PopupPanel" parent="."]
-initial_position = 2
-
-[node name="Button" type="Button" parent="PopupPanel"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
 
 [connection signal="describe_problem" from="." to="DialoguePanel" method="_on_describe_problem"]
