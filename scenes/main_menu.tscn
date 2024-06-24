@@ -10,7 +10,6 @@ script = ExtResource("1_713f2")
 game_scene = "res://scenes/game.tscn"
 
 [node name="SceneTransition" parent="." instance=ExtResource("3_fvfhq")]
-fade_in = null
 metadata/_edit_lock_ = true
 
 [node name="Background" type="TextureRect" parent="."]
