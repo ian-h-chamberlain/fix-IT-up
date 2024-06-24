@@ -176,7 +176,9 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "So, my computer has been making a [i]weird[/i] noise lately."
+text = "So, my computer has been making a [i]weird[/i] noise lately.
+[b]bold text[/b]
+[code]Code text[/code]"
 fit_content = true
 scroll_active = false
 
