@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://bvokt82tb5fds"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://bvokt82tb5fds"]
 
 [ext_resource type="FontFile" uid="uid://bjvy3qfyu2di" path="res://assets/fonts/HomeVideo-BLG6G.ttf" id="1_6vdf3"]
 [ext_resource type="FontFile" uid="uid://bube42ugx3atr" path="res://assets/fonts/HomeVideoBold-R90Dv.ttf" id="2_noq3g"]
@@ -114,26 +114,6 @@ shadow_color = Color(0, 0, 0, 0.823529)
 shadow_size = 5
 shadow_offset = Vector2(5, 5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vc8l"]
-resource_name = "NormalBox"
-content_margin_left = 30.0
-content_margin_top = 15.0
-content_margin_right = 30.0
-content_margin_bottom = 15.0
-bg_color = Color(0, 0.352572, 0.640274, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.599914, 0.705491, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.823529)
-shadow_size = 5
-shadow_offset = Vector2(5, 5)
-
 [sub_resource type="FontVariation" id="FontVariation_t7180"]
 base_font = ExtResource("1_6vdf3")
 variation_embolden = 1.5
@@ -243,7 +223,6 @@ MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
 Panel/styles/panel = SubResource("StyleBoxFlat_m001t")
-PopupPanel/styles/panel = SubResource("StyleBoxFlat_7vc8l")
 RichTextLabel/constants/line_separation = 7
 RichTextLabel/font_sizes/bold_font_size = 19
 RichTextLabel/font_sizes/bold_italics_font_size = 19
@@ -264,3 +243,5 @@ SquareInteractable/base_type = &"RoundInteractable"
 SquareInteractable/styles/focus = SubResource("StyleBoxFlat_hxbel")
 SquareInteractable/styles/hover = SubResource("StyleBoxFlat_7l3xr")
 SquareInteractable/styles/pressed = SubResource("StyleBoxFlat_ehp0u")
+Window/font_sizes/title_font_size = 24
+Window/fonts/title_font = ExtResource("1_6vdf3")

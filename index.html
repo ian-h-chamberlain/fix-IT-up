@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1024px, user-scalable=no, initial-scale=1.0">
+    <!--
+        TODO: it may be possible to make this a little more presentable in its forced
+        new window on Firefox. See https://itch.io/t/3659380/my-web-games-are-suddenly-opening-in-a-new-window
+    -->
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        body {
+            background: black;
+            margin: 0;
+        }
+
+        .game-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <title>$GODOT_PROJECT_NAME</title>
+</head>
+
+<body>
+    <div class="game-container">
+        <canvas id="canvas" width="1024" height="768"></canvas>
+    </div>
+    <script src="$GODOT_URL"></script>
+    <script>
+        var engine = new Engine($GODOT_CONFIG);
+        engine.startGame();
+    </script>
+</body>
+
+</html>

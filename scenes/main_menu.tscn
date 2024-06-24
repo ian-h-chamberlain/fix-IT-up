@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5ifsdfhsudox"]
+[gd_scene load_steps=5 format=3 uid="uid://b5ifsdfhsudox"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_713f2"]
 [ext_resource type="Texture2D" uid="uid://cwovggehwiy0i" path="res://assets/menu_background.png" id="1_pvm04"]
 [ext_resource type="PackedScene" uid="uid://b82dgaor54mvc" path="res://scenes/game.tscn" id="2_f7mdj"]
 [ext_resource type="Theme" uid="uid://bvokt82tb5fds" path="res://themes/main_ui.tres" id="4_2keke"]
-
-[sub_resource type="Theme" id="Theme_kry2g"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_713f2")
@@ -17,7 +15,6 @@ texture_filter = 1
 offset_right = 1024.0
 offset_bottom = 768.0
 mouse_filter = 2
-theme = SubResource("Theme_kry2g")
 texture = ExtResource("1_pvm04")
 
 [node name="HelpDialog" type="AcceptDialog" parent="."]
@@ -77,10 +74,16 @@ theme_type_variation = &"BigButton"
 text = "Help"
 
 [node name="Settings" type="Button" parent="Menu/Buttons"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_2keke")
 theme_type_variation = &"BigButton"
 text = "Settings"
+
+[node name="Exit" type="Button" parent="Menu/Buttons"]
+layout_mode = 2
+theme_type_variation = &"BigButton"
+text = "Exit"
 
 [node name="Credits" type="RichTextLabel" parent="Menu"]
 layout_mode = 2
