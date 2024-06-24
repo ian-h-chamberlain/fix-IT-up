@@ -6,18 +6,14 @@ class_name SceneTransition
 
 func _ready():
     if fade_in:
+        self.mouse_filter = Control.MOUSE_FILTER_STOP
         $AnimationPlayer.play_backwards("fade_out")
 
-    if get_parent() == get_tree().root:
-        # Testing in its own scene
-        await $AnimationPlayer.animation_finished
-        await get_tree().create_timer(1.0).timeout
-        transition()
+    self.mouse_filter = Control.MOUSE_FILTER_PASS
 
-func transition(next_scene: PackedScene=null):
+func transition(next_scene: String):
+    self.mouse_filter = Control.MOUSE_FILTER_STOP
+
     $AnimationPlayer.play("fade_out")
     await $AnimationPlayer.animation_finished
-    if next_scene == null:
-        get_tree().reload_current_scene()
-    else:
-        get_tree().change_scene_to_packed(next_scene)
+    get_tree().change_scene_to_file(next_scene)

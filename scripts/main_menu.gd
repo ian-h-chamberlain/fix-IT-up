@@ -1,6 +1,6 @@
 extends Node
 
-@export var game_scene: PackedScene
+@export_file("*.tscn") var game_scene: String
 @export_multiline var help_text: String
 
 # Called when the node enters the scene tree for the first time.

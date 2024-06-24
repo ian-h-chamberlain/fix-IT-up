@@ -1,7 +1,7 @@
 extends Node
 class_name Main
 
-signal describe_problem(problem: Array[Problem])
+signal describe_problem(problem: Problem)
 
 @onready var _desktop := $Interactables/Desktop as Desktop
 @onready var _monitor := $Interactables/Monitor as Monitor
@@ -30,7 +30,6 @@ class Problem:
 
     var dialogue_text: String:
         get:
-            # TODO: maybe return a list for scrollability here?
             return "\n".join([
                 [
                     "I've been having some issues with my computer.",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b82dgaor54mvc"]
+[gd_scene load_steps=15 format=3 uid="uid://b82dgaor54mvc"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_epm5v"]
 [ext_resource type="Texture2D" uid="uid://nwxrpob5vbkt" path="res://assets/background.png" id="1_gfbd1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/DialoguePanel.gd" id="5_op0vf"]
 [ext_resource type="Theme" uid="uid://bvokt82tb5fds" path="res://themes/main_ui.tres" id="6_ff8od"]
 [ext_resource type="PackedScene" uid="uid://c7j647rvj2q3f" path="res://scenes/scene_transition.tscn" id="8_khi0n"]
+[ext_resource type="Script" path="res://scripts/MenuConfirmation.gd" id="9_r1ui2"]
 
 [sub_resource type="Theme" id="Theme_5t52v"]
 
@@ -33,6 +34,7 @@ offset_bottom = 768.0
 mouse_filter = 2
 theme = SubResource("Theme_5t52v")
 texture = ExtResource("1_gfbd1")
+metadata/_edit_lock_ = true
 
 [node name="Interactables" type="Node" parent="."]
 
@@ -44,7 +46,7 @@ offset_bottom = 368.0
 focus_neighbor_right = NodePath("../Desktop/CD/EjectButton")
 focus_neighbor_bottom = NodePath("../Monitor/Power")
 focus_next = NodePath("../Desktop/CD/EjectButton")
-focus_previous = NodePath("../Monitor/Power")
+focus_previous = NodePath("../../MarginContainer/MenuButton")
 disabled = true
 text = "Cable
 Management
@@ -89,7 +91,7 @@ offset_bottom = 547.0
 focus_neighbor_left = NodePath("../BrightnessUp")
 focus_neighbor_top = NodePath("../../CableMgmt")
 focus_neighbor_right = NodePath("../../Desktop/PowerButton")
-focus_next = NodePath("../../CableMgmt")
+focus_next = NodePath("../../../MarginContainer/MenuButton")
 focus_previous = NodePath("../BrightnessUp")
 theme = ExtResource("6_ff8od")
 theme_type_variation = &"RoundInteractable"
@@ -147,6 +149,7 @@ offset_top = 298.0
 offset_right = 852.0
 offset_bottom = 313.0
 focus_neighbor_left = NodePath("../../../CableMgmt")
+focus_neighbor_top = NodePath("../../../../MarginContainer/MenuButton")
 focus_neighbor_bottom = NodePath("../../Floppy/EjectButton")
 focus_next = NodePath("../../Floppy/EjectButton")
 focus_previous = NodePath("../../../CableMgmt")
@@ -197,6 +200,7 @@ offset_top = 30.0
 offset_right = 392.0
 offset_bottom = 150.0
 script = ExtResource("5_op0vf")
+done_delay = 2.5
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="DialoguePanel"]
@@ -248,6 +252,34 @@ clip_text = true
 icon_alignment = 2
 
 [node name="SceneTransition" parent="." instance=ExtResource("8_khi0n")]
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_constants/margin_right = 30
+
+[node name="MenuButton" type="Button" parent="MarginContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../Interactables/Desktop/CD/EjectButton")
+focus_next = NodePath("../../Interactables/CableMgmt")
+focus_previous = NodePath("../../Interactables/Monitor/Power")
+text = "menu"
+
+[node name="MenuConfirmation" type="ConfirmationDialog" parent="."]
+title = "Confirm"
+initial_position = 2
+size = Vector2i(350, 100)
+unresizable = true
+ok_button_text = "Ok"
+dialog_text = "Return to main menu?"
+script = ExtResource("9_r1ui2")
+menu_scene = "res://scenes/main_menu.tscn"
 
 [connection signal="describe_problem" from="." to="DialoguePanel" method="_on_describe_problem"]
 [connection signal="power_state_updated" from="Interactables/Desktop" to="Interactables/Monitor" method="_on_pc_power_changed"]
+[connection signal="pressed" from="MarginContainer/MenuButton" to="MenuConfirmation" method="_on_menu_button_pressed"]
