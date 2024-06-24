@@ -1,13 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://b82dgaor54mvc"]
+[gd_scene load_steps=13 format=3 uid="uid://b82dgaor54mvc"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_epm5v"]
 [ext_resource type="Texture2D" uid="uid://nwxrpob5vbkt" path="res://assets/background.png" id="1_gfbd1"]
-[ext_resource type="Theme" uid="uid://rq602112vek1" path="res://themes/clickable_round.tres" id="1_hwjg7"]
-[ext_resource type="Theme" uid="uid://dfh0h3n3c7ql4" path="res://themes/clickable_square.tres" id="3_1ls2i"]
 [ext_resource type="Script" path="res://scripts/Monitor.gd" id="3_e8gux"]
 [ext_resource type="Texture2D" uid="uid://crgy2qqikarky" path="res://assets/arrow_button.png" id="4_5hwqp"]
 [ext_resource type="Script" path="res://scripts/Desktop.gd" id="5_hbgmh"]
 [ext_resource type="Script" path="res://scripts/DialoguePanel.gd" id="5_op0vf"]
+[ext_resource type="Theme" uid="uid://bvokt82tb5fds" path="res://themes/main_ui.tres" id="6_ff8od"]
 
 [sub_resource type="Theme" id="Theme_5t52v"]
 
@@ -22,19 +21,12 @@ shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q2pcl"]
 
-[node name="Main" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Main" type="Node"]
 script = ExtResource("1_epm5v")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -100
 texture_filter = 1
-layout_mode = 0
 offset_right = 1024.0
 offset_bottom = 768.0
 mouse_filter = 2
@@ -61,21 +53,24 @@ offset_left = 288.0
 offset_top = 522.0
 offset_right = 313.0
 offset_bottom = 547.0
-theme = ExtResource("1_hwjg7")
+theme = ExtResource("6_ff8od")
+theme_type_variation = &"RoundInteractable"
 
 [node name="BrightnessUp" type="Button" parent="Interactables/Monitor"]
 offset_left = 328.0
 offset_top = 522.0
 offset_right = 353.0
 offset_bottom = 547.0
-theme = ExtResource("1_hwjg7")
+theme = ExtResource("6_ff8od")
+theme_type_variation = &"RoundInteractable"
 
 [node name="Power" type="Button" parent="Interactables/Monitor"]
 offset_left = 370.0
 offset_top = 521.0
 offset_right = 396.0
 offset_bottom = 547.0
-theme = ExtResource("1_hwjg7")
+theme = ExtResource("6_ff8od")
+theme_type_variation = &"RoundInteractable"
 
 [node name="Brightness" type="ColorRect" parent="Interactables/Monitor"]
 offset_left = 158.0
@@ -95,7 +90,8 @@ offset_left = 748.0
 offset_top = 404.0
 offset_right = 787.0
 offset_bottom = 425.0
-theme = ExtResource("1_hwjg7")
+theme = ExtResource("6_ff8od")
+theme_type_variation = &"RoundInteractable"
 
 [node name="PowerLED" type="ColorRect" parent="Interactables/Desktop"]
 visible = false
@@ -124,7 +120,8 @@ offset_left = 836.0
 offset_top = 298.0
 offset_right = 852.0
 offset_bottom = 313.0
-theme = ExtResource("3_1ls2i")
+theme = ExtResource("6_ff8od")
+theme_type_variation = &"SquareInteractable"
 
 [node name="LED" type="ColorRect" parent="Interactables/Desktop/CD"]
 visible = false
@@ -143,7 +140,8 @@ offset_left = 820.0
 offset_top = 337.0
 offset_right = 831.0
 offset_bottom = 349.0
-theme = ExtResource("3_1ls2i")
+theme = ExtResource("6_ff8od")
+theme_type_variation = &"SquareInteractable"
 
 [node name="LED" type="ColorRect" parent="Interactables/Desktop/Floppy"]
 visible = false
@@ -156,7 +154,6 @@ color = Color(0.415686, 0.898039, 0, 1)
 [node name="Timer" type="Timer" parent="Interactables/Desktop/Floppy/LED"]
 
 [node name="DialoguePanel" type="Panel" parent="."]
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.125
 anchor_bottom = 0.0611979

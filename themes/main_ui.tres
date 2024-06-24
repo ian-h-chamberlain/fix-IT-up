@@ -1,7 +1,11 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bvokt82tb5fds"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bvokt82tb5fds"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iciiy"]
 resource_name = "PressedBox"
+content_margin_left = 30.0
+content_margin_top = 15.0
+content_margin_right = 30.0
+content_margin_bottom = 15.0
 bg_color = Color(0.2898, 0.35924, 0.42, 1)
 border_width_left = 4
 border_width_top = 4
@@ -18,6 +22,10 @@ shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o1mn"]
 resource_name = "HoveredBox"
+content_margin_left = 30.0
+content_margin_top = 15.0
+content_margin_right = 30.0
+content_margin_bottom = 15.0
 bg_color = Color(9.95329e-05, 0.539227, 0.958667, 1)
 border_width_left = 4
 border_width_top = 4
@@ -34,6 +42,10 @@ shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvmrf"]
 resource_name = "NormalBox"
+content_margin_left = 30.0
+content_margin_top = 15.0
+content_margin_right = 30.0
+content_margin_bottom = 15.0
 bg_color = Color(0, 0.352572, 0.640274, 1)
 border_width_left = 4
 border_width_top = 4
@@ -82,8 +94,95 @@ shadow_offset = Vector2(5, 5)
 [sub_resource type="SystemFont" id="SystemFont_bustb"]
 font_names = PackedStringArray("Monaco", "Monospace")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xu50"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axgdl"]
+resource_name = "FocusInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgjjx"]
+resource_name = "HoverInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uiobm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8p61"]
+resource_name = "PressedInteractable"
+bg_color = Color(0, 0, 0, 0.313726)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxbel"]
+resource_name = "HoverInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l3xr"]
+resource_name = "HoverInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehp0u"]
+resource_name = "PressedInteractable"
+bg_color = Color(0, 0, 0, 0.313726)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [resource]
 resource_name = "UITheme"
+BigButton/base_type = &"Button"
+BigButton/font_sizes/font_size = 48
+BoxContainer/constants/separation = 15
 Button/styles/disabled = SubResource("StyleBoxFlat_iciiy")
 Button/styles/hover = SubResource("StyleBoxFlat_0o1mn")
 Button/styles/normal = SubResource("StyleBoxFlat_cvmrf")
@@ -99,3 +198,13 @@ RichTextLabel/font_sizes/italics_font_size = 19
 RichTextLabel/font_sizes/mono_font_size = 18
 RichTextLabel/font_sizes/normal_font_size = 18
 RichTextLabel/fonts/mono_font = SubResource("SystemFont_bustb")
+RoundInteractable/base_type = &"Button"
+RoundInteractable/styles/disabled = SubResource("StyleBoxEmpty_4xu50")
+RoundInteractable/styles/focus = SubResource("StyleBoxFlat_axgdl")
+RoundInteractable/styles/hover = SubResource("StyleBoxFlat_wgjjx")
+RoundInteractable/styles/normal = SubResource("StyleBoxEmpty_uiobm")
+RoundInteractable/styles/pressed = SubResource("StyleBoxFlat_g8p61")
+SquareInteractable/base_type = &"RoundInteractable"
+SquareInteractable/styles/focus = SubResource("StyleBoxFlat_hxbel")
+SquareInteractable/styles/hover = SubResource("StyleBoxFlat_7l3xr")
+SquareInteractable/styles/pressed = SubResource("StyleBoxFlat_ehp0u")

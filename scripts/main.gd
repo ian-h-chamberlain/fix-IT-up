@@ -1,4 +1,4 @@
-extends Control
+extends Node
 class_name Main
 
 signal describe_problem(problem: Array[Problem])
