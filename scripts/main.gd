@@ -83,9 +83,8 @@ class Problem:
         return choices.pick_random()
 
 func _ready():
-    # TODO accessibility https://docs.godotengine.org/en/stable/tutorials/ui/gui_navigation.html
-    # maybe even can make it controller playable with this, since it's all just
-    # buttons at the moment
+    # Even though it's disabled, this should allow for keyboard / gamepad focus to work
+    $Interactables/CableMgmt.grab_focus()
 
     # TODO: turn this into a game loop. Probably with some kind of "thank you!"
     # and perhaps a transition of sorts to the next customer

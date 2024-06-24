@@ -38,11 +38,18 @@ texture = ExtResource("1_gfbd1")
 [node name="CableMgmt" type="Button" parent="Interactables"]
 offset_left = 456.0
 offset_top = 220.0
-offset_right = 639.0
+offset_right = 640.0
 offset_bottom = 368.0
+focus_neighbor_right = NodePath("../Desktop/CD/EjectButton")
+focus_neighbor_bottom = NodePath("../Monitor/Power")
+focus_next = NodePath("../Desktop/CD/EjectButton")
+focus_previous = NodePath("../Monitor/Power")
 disabled = true
-text = "Cable Management
-(not yet available)"
+text = "Cable
+Management
+
+(not yet
+available)"
 
 [node name="Monitor" type="Node" parent="Interactables"]
 script = ExtResource("3_e8gux")
@@ -53,6 +60,10 @@ offset_left = 288.0
 offset_top = 522.0
 offset_right = 313.0
 offset_bottom = 547.0
+focus_neighbor_top = NodePath("../../CableMgmt")
+focus_neighbor_right = NodePath("../BrightnessUp")
+focus_next = NodePath("../BrightnessUp")
+focus_previous = NodePath("../../Desktop/PowerButton")
 theme = ExtResource("6_ff8od")
 theme_type_variation = &"RoundInteractable"
 
@@ -61,6 +72,11 @@ offset_left = 328.0
 offset_top = 522.0
 offset_right = 353.0
 offset_bottom = 547.0
+focus_neighbor_left = NodePath("../BrightnessDown")
+focus_neighbor_top = NodePath("../../CableMgmt")
+focus_neighbor_right = NodePath("../Power")
+focus_next = NodePath("../Power")
+focus_previous = NodePath("../BrightnessDown")
 theme = ExtResource("6_ff8od")
 theme_type_variation = &"RoundInteractable"
 
@@ -69,6 +85,11 @@ offset_left = 370.0
 offset_top = 521.0
 offset_right = 396.0
 offset_bottom = 547.0
+focus_neighbor_left = NodePath("../BrightnessUp")
+focus_neighbor_top = NodePath("../../CableMgmt")
+focus_neighbor_right = NodePath("../../Desktop/PowerButton")
+focus_next = NodePath("../../CableMgmt")
+focus_previous = NodePath("../BrightnessUp")
 theme = ExtResource("6_ff8od")
 theme_type_variation = &"RoundInteractable"
 
@@ -90,6 +111,10 @@ offset_left = 748.0
 offset_top = 404.0
 offset_right = 787.0
 offset_bottom = 425.0
+focus_neighbor_left = NodePath("../../Monitor/Power")
+focus_neighbor_top = NodePath("../Floppy/EjectButton")
+focus_next = NodePath("../../Monitor/BrightnessDown")
+focus_previous = NodePath("../Floppy/EjectButton")
 theme = ExtResource("6_ff8od")
 theme_type_variation = &"RoundInteractable"
 
@@ -120,6 +145,10 @@ offset_left = 836.0
 offset_top = 298.0
 offset_right = 852.0
 offset_bottom = 313.0
+focus_neighbor_left = NodePath("../../../CableMgmt")
+focus_neighbor_bottom = NodePath("../../Floppy/EjectButton")
+focus_next = NodePath("../../Floppy/EjectButton")
+focus_previous = NodePath("../../../CableMgmt")
 theme = ExtResource("6_ff8od")
 theme_type_variation = &"SquareInteractable"
 
@@ -140,6 +169,11 @@ offset_left = 820.0
 offset_top = 337.0
 offset_right = 831.0
 offset_bottom = 349.0
+focus_neighbor_left = NodePath("../../../CableMgmt")
+focus_neighbor_top = NodePath("../../CD/EjectButton")
+focus_neighbor_bottom = NodePath("../../PowerButton")
+focus_next = NodePath("../../PowerButton")
+focus_previous = NodePath("../../CD/EjectButton")
 theme = ExtResource("6_ff8od")
 theme_type_variation = &"SquareInteractable"
 
@@ -205,6 +239,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_jtici")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_aw7st")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fb2sp")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q2pcl")
+disabled = true
 text = "..."
 icon = ExtResource("4_5hwqp")
 alignment = 2
