@@ -12,15 +12,15 @@ signal power_state_updated(Power)
 
 @export var floppy_inserted: bool = true:
     set(inserted):
-        # TODO: this should depend on power state
-        floppy_inserted = inserted
-        _toggle_blinking($Floppy/LED, inserted)
+        if power_state == Power.ON:
+            floppy_inserted = inserted
+            _toggle_blinking($Floppy/LED, inserted)
 
 @export var cd_inserted: bool = true:
     set(inserted):
-        # TODO: this should depend on power state
-        cd_inserted = inserted
-        _toggle_blinking($CD/LED, inserted)
+        if power_state == Power.ON:
+            cd_inserted = inserted
+            _toggle_blinking($CD/LED, inserted)
 
 func _ready():
     $PowerButton.pressed.connect(_on_power_pressed)

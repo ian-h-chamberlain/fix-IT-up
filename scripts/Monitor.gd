@@ -36,14 +36,14 @@ func _set_brightness(b: float):
 
     if _pc_power == Desktop.Power.OFF or power_state == Power.OFF:
         _brightness_rect.color.a = 1.0
-        _brightness_rect.color.v = 0.2
+        _brightness_rect.color.v = 0.1
         return
 
     if brightness > 0.0:
         _brightness_rect.color.v = 1.0
         _brightness_rect.color.a = brightness
     else:
-        _brightness_rect.color.v = 0.2
+        _brightness_rect.color.v = 0.1
         _brightness_rect.color.a = -brightness
 
 func _on_brightness_up_pressed():
