@@ -86,7 +86,7 @@ text = "Settings"
 layout_mode = 2
 theme = ExtResource("4_2keke")
 bbcode_enabled = true
-text = "[center]by [url=\"https://ian-h-chamberlain.com/\"][code]@ian-h-chamberlain[/code][/url]
+text = "[center]by [url=\"https://ian-h-chamberlain.com/\"]@ian-h-chamberlain[/url]
 Font: [url=\"https://ggbot.itch.io/home-video-font\"]Home video[/url] (CC0 v1.0)
 [/center]"
 fit_content = true
