@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bvokt82tb5fds"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://bvokt82tb5fds"]
 
 [ext_resource type="FontFile" uid="uid://bjvy3qfyu2di" path="res://assets/fonts/HomeVideo-BLG6G.ttf" id="1_6vdf3"]
 [ext_resource type="FontFile" uid="uid://bube42ugx3atr" path="res://assets/fonts/HomeVideoBold-R90Dv.ttf" id="2_noq3g"]
@@ -138,6 +138,90 @@ shadow_offset = Vector2(5, 5)
 base_font = ExtResource("1_6vdf3")
 variation_transform = Transform2D(1, 0.5, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xu50"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axgdl"]
+resource_name = "FocusInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgjjx"]
+resource_name = "HoverInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uiobm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8p61"]
+resource_name = "PressedInteractable"
+bg_color = Color(0, 0, 0, 0.313726)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxbel"]
+resource_name = "HoverInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l3xr"]
+resource_name = "HoverInteractable"
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehp0u"]
+resource_name = "PressedInteractable"
+bg_color = Color(0, 0, 0, 0.313726)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [resource]
 resource_name = "UITheme"
 AcceptDialog/styles/panel = SubResource("StyleBoxFlat_b0t70")
@@ -167,4 +251,12 @@ RichTextLabel/fonts/italics_font = SubResource("FontVariation_miaag")
 RichTextLabel/fonts/mono_font = ExtResource("1_6vdf3")
 RichTextLabel/fonts/normal_font = ExtResource("1_6vdf3")
 RoundInteractable/base_type = &"Button"
+RoundInteractable/styles/disabled = SubResource("StyleBoxEmpty_4xu50")
+RoundInteractable/styles/focus = SubResource("StyleBoxFlat_axgdl")
+RoundInteractable/styles/hover = SubResource("StyleBoxFlat_wgjjx")
+RoundInteractable/styles/normal = SubResource("StyleBoxEmpty_uiobm")
+RoundInteractable/styles/pressed = SubResource("StyleBoxFlat_g8p61")
 SquareInteractable/base_type = &"RoundInteractable"
+SquareInteractable/styles/focus = SubResource("StyleBoxFlat_hxbel")
+SquareInteractable/styles/hover = SubResource("StyleBoxFlat_7l3xr")
+SquareInteractable/styles/pressed = SubResource("StyleBoxFlat_ehp0u")
