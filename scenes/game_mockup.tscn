@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw4u1qbfsifda"]
+
+[ext_resource type="PackedScene" uid="uid://b82dgaor54mvc" path="res://scenes/game.tscn" id="1_8h10n"]
+[ext_resource type="Theme" uid="uid://bvokt82tb5fds" path="res://themes/main_ui.tres" id="2_n2is0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wil6"]
+resource_name = "NormalBox"
+content_margin_left = 30.0
+content_margin_top = 15.0
+content_margin_right = 30.0
+content_margin_bottom = 15.0
+bg_color = Color(0, 0.352572, 0.640274, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.599914, 0.705491, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.823529)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[node name="Main" instance=ExtResource("1_8h10n")]
+script = null
+
+[node name="CableMgmt" parent="Interactables" index="0"]
+visible = false
+disabled = false
+text = ""
+
+[node name="DialoguePanel" parent="." index="2"]
+visible = false
+
+[node name="MarginContainer" parent="." index="4"]
+visible = false
+
+[node name="MenuConfirmation" parent="." index="5"]
+texture_mipmap_bias = 1.5
+
+[node name="PanelContainer" type="PanelContainer" parent="." index="6"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 134.0
+offset_right = 270.0
+offset_bottom = 236.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1wil6")
+
+[node name="Title" type="Label" parent="PanelContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("2_n2is0")
+theme_override_colors/font_shadow_color = Color(0, 0.218055, 0.409674, 1)
+theme_override_colors/font_outline_color = Color(0, 0.218055, 0.409674, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 80
+text = "Fix IT Up!"
+horizontal_alignment = 1
