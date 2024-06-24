@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5ifsdfhsudox"]
+[gd_scene load_steps=6 format=3 uid="uid://b5ifsdfhsudox"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_713f2"]
 [ext_resource type="Texture2D" uid="uid://cwovggehwiy0i" path="res://assets/menu_background.png" id="1_pvm04"]
 [ext_resource type="PackedScene" uid="uid://b82dgaor54mvc" path="res://scenes/game.tscn" id="2_f7mdj"]
+[ext_resource type="PackedScene" uid="uid://c7j647rvj2q3f" path="res://scenes/scene_transition.tscn" id="3_fvfhq"]
 [ext_resource type="Theme" uid="uid://bvokt82tb5fds" path="res://themes/main_ui.tres" id="4_2keke"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_713f2")
 game_scene = ExtResource("2_f7mdj")
+
+[node name="SceneTransition" parent="." instance=ExtResource("3_fvfhq")]
+fade_in = false
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -100

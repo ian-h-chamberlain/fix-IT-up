@@ -6,7 +6,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
     $Menu/Buttons/Start.grab_focus()
-    $Menu/Buttons/Start.pressed.connect(func(): get_tree().change_scene_to_packed(game_scene))
+    $Menu/Buttons/Start.pressed.connect(func(): $SceneTransition.transition(game_scene))
     $Menu/Buttons/Settings.pressed.connect(func(): $SettingsDialog.visible=true)
     $Menu/Buttons/Help.pressed.connect(func(): $HelpDialog.visible=true)
 

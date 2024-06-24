@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b82dgaor54mvc"]
+[gd_scene load_steps=14 format=3 uid="uid://b82dgaor54mvc"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_epm5v"]
 [ext_resource type="Texture2D" uid="uid://nwxrpob5vbkt" path="res://assets/background.png" id="1_gfbd1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/Desktop.gd" id="5_hbgmh"]
 [ext_resource type="Script" path="res://scripts/DialoguePanel.gd" id="5_op0vf"]
 [ext_resource type="Theme" uid="uid://bvokt82tb5fds" path="res://themes/main_ui.tres" id="6_ff8od"]
+[ext_resource type="PackedScene" uid="uid://c7j647rvj2q3f" path="res://scenes/scene_transition.tscn" id="8_khi0n"]
 
 [sub_resource type="Theme" id="Theme_5t52v"]
 
@@ -245,6 +246,8 @@ icon = ExtResource("4_5hwqp")
 alignment = 2
 clip_text = true
 icon_alignment = 2
+
+[node name="SceneTransition" parent="." instance=ExtResource("8_khi0n")]
 
 [connection signal="describe_problem" from="." to="DialoguePanel" method="_on_describe_problem"]
 [connection signal="power_state_updated" from="Interactables/Desktop" to="Interactables/Monitor" method="_on_pc_power_changed"]
