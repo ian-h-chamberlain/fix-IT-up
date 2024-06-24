@@ -24,13 +24,37 @@ texture = ExtResource("1_pvm04")
 metadata/_edit_lock_ = true
 
 [node name="HelpDialog" type="AcceptDialog" parent="."]
+texture_mipmap_bias = 1.5
 title = "Help"
 initial_position = 2
-size = Vector2i(640, 480)
+size = Vector2i(640, 514)
 unresizable = true
-dialog_text = "Initial help text here"
+max_size = Vector2i(640, 720)
+dialog_text = "Welcome to \"Fix IT Up\", the local computer shop!
+
+You run the business, and it turns out a lot of people don't really know how to take care of their fancy new home computers yet.
+
+Customers will come to you with complaints about their computer, and it's your job to figure out how to help them!
+
+Controls:
+
+  Left click / Enter / Space:
+    Interact with hovered object
+
+  Escape:
+    Close dialog
+
+  Enter / Space:
+    Interact with focused object
+
+  Tab / Shift-Tab / Arrow keys:
+    Move focus to next/previous object
+
+Controllers may also work but are mostly untested."
+dialog_autowrap = true
 
 [node name="SettingsDialog" type="ConfirmationDialog" parent="."]
+texture_mipmap_bias = 1.5
 title = "Settings"
 initial_position = 2
 size = Vector2i(640, 480)
@@ -49,6 +73,7 @@ offset_right = 175.5
 offset_bottom = 187.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 8
 
 [node name="Title" type="Label" parent="Menu"]
 layout_mode = 2
@@ -66,6 +91,7 @@ horizontal_alignment = 1
 [node name="Buttons" type="VBoxContainer" parent="Menu"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 20
 
 [node name="Start" type="Button" parent="Menu/Buttons"]
 layout_mode = 2
@@ -91,13 +117,21 @@ layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "Exit"
 
-[node name="Credits" type="RichTextLabel" parent="Menu"]
+[node name="CreditsAuthor" type="RichTextLabel" parent="Menu"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("4_2keke")
 bbcode_enabled = true
-text = "[center]by [url=\"https://ian-h-chamberlain.com/\"]@ian-h-chamberlain[/url]
-Font: [url=\"https://ggbot.itch.io/home-video-font\"]Home video[/url] (CC0 v1.0)
-[/center]"
+text = "[center]by [url=\"https://ian-h-chamberlain.com/\"]@ian-h-chamberlain[/url][/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="CreditsFont" type="RichTextLabel" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_2keke")
+bbcode_enabled = true
+text = "[center]Font: [url=\"https://ggbot.itch.io/home-video-font\"]Home video[/url] (CC0 v1.0)[/center]"
 fit_content = true
 autowrap_mode = 0
 
@@ -107,7 +141,7 @@ columns = 2
 
 [node name="WildCards" type="HBoxContainer" parent="Menu"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="ShowYourColors" type="VBoxContainer" parent="Menu/WildCards"]
@@ -122,8 +156,8 @@ expand_mode = 5
 
 [node name="Label" type="Label" parent="Menu/WildCards/ShowYourColors"]
 layout_mode = 2
-text = "We got a flag
-(maybe a stretch)"
+text = "We have a flag
+(it's a stretch)"
 horizontal_alignment = 1
 
 [node name="WhatsTheT" type="VBoxContainer" parent="Menu/WildCards"]
@@ -140,6 +174,6 @@ expand_mode = 5
 
 [node name="Label" type="Label" parent="Menu/WildCards/WhatsTheT"]
 layout_mode = 2
-text = "T is for 
-Tech Support"
+text = "T is for...
+Tech Support?"
 horizontal_alignment = 1

@@ -1,7 +1,6 @@
 extends Node
 
 @export_file("*.tscn") var game_scene: String
-@export_multiline var help_text: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +14,8 @@ func _ready():
     else:
         $Menu/Buttons/Exit.pressed.connect(func(): get_tree().quit())
 
-    $Menu/Credits.meta_clicked.connect(_credits_on_meta_clicked)
+    $Menu/CreditsAuthor.meta_clicked.connect(_credits_on_meta_clicked)
+    $Menu/CreditsFont.meta_clicked.connect(_credits_on_meta_clicked)
 
 # https://docs.godotengine.org/en/4.2/tutorials/ui/bbcode_in_richtextlabel.html#handling-url-tag-clicks
 func _credits_on_meta_clicked(meta):

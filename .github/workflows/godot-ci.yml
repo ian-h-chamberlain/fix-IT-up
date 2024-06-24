@@ -108,7 +108,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.EXPORT_NAME_SLUG }}-macos
-          path: build/native/macos
+          # Use a glob here so we upload the .app and not the directory
+          path: build/native/macos/*
 
   release:
     name: Release
