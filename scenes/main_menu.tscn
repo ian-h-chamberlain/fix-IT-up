@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5ifsdfhsudox"]
+[gd_scene load_steps=7 format=3 uid="uid://b5ifsdfhsudox"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_713f2"]
 [ext_resource type="Texture2D" uid="uid://cwovggehwiy0i" path="res://assets/menu_background.png" id="1_pvm04"]
 [ext_resource type="PackedScene" uid="uid://c7j647rvj2q3f" path="res://scenes/scene_transition.tscn" id="3_fvfhq"]
 [ext_resource type="Theme" uid="uid://bvokt82tb5fds" path="res://themes/main_ui.tres" id="4_2keke"]
+[ext_resource type="Texture2D" uid="uid://cca14ahxf6te" path="res://assets/show-your-colors-small.png" id="5_tn7ds"]
+[ext_resource type="Texture2D" uid="uid://mtcejl61hmd7" path="res://assets/whats-the-t-small.png" id="6_hvqrr"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_713f2")
@@ -98,3 +100,46 @@ Font: [url=\"https://ggbot.itch.io/home-video-font\"]Home video[/url] (CC0 v1.0)
 [/center]"
 fit_content = true
 autowrap_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="Menu"]
+layout_mode = 2
+columns = 2
+
+[node name="WildCards" type="HBoxContainer" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ShowYourColors" type="VBoxContainer" parent="Menu/WildCards"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu/WildCards/ShowYourColors"]
+custom_minimum_size = Vector2(115, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_tn7ds")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Menu/WildCards/ShowYourColors"]
+layout_mode = 2
+text = "We got a flag
+(maybe a stretch)"
+horizontal_alignment = 1
+
+[node name="WhatsTheT" type="VBoxContainer" parent="Menu/WildCards"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Menu/WildCards/WhatsTheT"]
+custom_minimum_size = Vector2(115, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("6_hvqrr")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Menu/WildCards/WhatsTheT"]
+layout_mode = 2
+text = "T is for 
+Tech Support"
+horizontal_alignment = 1
