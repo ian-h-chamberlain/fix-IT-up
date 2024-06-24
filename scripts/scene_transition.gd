@@ -9,11 +9,16 @@ func _ready():
         self.mouse_filter = Control.MOUSE_FILTER_STOP
         $AnimationPlayer.play_backwards("fade_out")
 
-    self.mouse_filter = Control.MOUSE_FILTER_PASS
+    self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-func transition(next_scene: String):
+# Big oof using "": https://github.com/godotengine/godot-proposals/issues/162
+func transition(next_scene: String=""):
     self.mouse_filter = Control.MOUSE_FILTER_STOP
 
     $AnimationPlayer.play("fade_out")
     await $AnimationPlayer.animation_finished
-    get_tree().change_scene_to_file(next_scene)
+    if next_scene != "":
+        get_tree().change_scene_to_file(next_scene)
+    else:
+        get_tree().reload_current_scene()
+        $AnimationPlayer.play_backwards("fade_out")

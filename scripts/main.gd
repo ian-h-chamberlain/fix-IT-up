@@ -6,6 +6,8 @@ signal describe_problem(problem: Problem)
 @onready var _desktop := $Interactables/Desktop as Desktop
 @onready var _monitor := $Interactables/Monitor as Monitor
 
+@export var transition_time: float = 0.5
+
 var current_problem: Problem = null:
     set(prob):
         current_problem = prob
@@ -91,6 +93,8 @@ func _ready():
     _randomize_state()
     _set_problem_state()
 
+    assert(not _is_problem_solved(), "generated problem was already solved")
+
 ## Set the initial state to be totally random. This should be called before
 ## Problem.set_state to make sure the state makes sense for the current problem.
 func _randomize_state():
@@ -121,14 +125,9 @@ func _set_problem_state():
         ProblemType.MONITOR_OFF:
             _monitor.power_state = Monitor.Power.OFF
 
-## TODO: should there be a "submit" button to see if it's fixed, or do it automatically?
 func _is_problem_solved() -> bool:
-    # Hmmm... maybe there should be a cascade of problems, like:
-    # - Scenario: problem 1
-    #   - problem 1 fixed -> figure out what is still a problem
-    #   - problem 2 fixed -> done!
-
     if _desktop.power_state == Desktop.Power.OFF:
+        # For now, all problem states require the PC to be on
         return false
 
     match current_problem.type:
@@ -137,7 +136,7 @@ func _is_problem_solved() -> bool:
         ProblemType.FLOPPY_STUCK:
             return _desktop.floppy_inserted
         ProblemType.PC_OFF, ProblemType.BRIGHTNESS_LOW, ProblemType.MONITOR_OFF:
-            return _monitor.power_state == Monitor.Power.OFF and _monitor.brightness > - 0.3
+            return _monitor.power_state == Monitor.Power.ON and _monitor.brightness > - 0.3
         ProblemType.BRIGHTNESS_HIGH:
             return _monitor.brightness < 0.3
 
@@ -150,3 +149,11 @@ func _process(_delta):
 
     if Input.is_action_just_pressed("clear_problems") and OS.is_debug_build():
         current_problem = null
+
+    # lol, checking every frame is probably not ideal
+    if current_problem != null and _is_problem_solved():
+        current_problem = null
+        # also this would probably be better off as a
+        await $DialoguePanel.visibility_changed
+        await get_tree().create_timer(transition_time).timeout
+        $SceneTransition.transition()
